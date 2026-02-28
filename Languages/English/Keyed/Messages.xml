@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+    <RaddusX.MaterialFilter.Settings.Label>Settings</RaddusX.MaterialFilter.Settings.Label>
+
+    <RaddusX.MaterialFilter.Settings.LoggingEnabled.Label>Logging Enabled?</RaddusX.MaterialFilter.Settings.LoggingEnabled.Label>
+    <RaddusX.MaterialFilter.Settings.LoggingEnabled.Tooltip>Whether to enable logging (for debugging purposes). Default: OFF.</RaddusX.MaterialFilter.Settings.LoggingEnabled.Tooltip>
+
+</LanguageData>

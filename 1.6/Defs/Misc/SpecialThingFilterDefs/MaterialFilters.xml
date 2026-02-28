@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <!-- Plasteel -->
+    <SpecialThingFilterDef>
+        <defName>RaddusX_Material_Filter_Apparel_Allow_Plasteel</defName>
+        <label>allow plasteel</label>
+        <description>Allow plasteel</description>
+        <parentCategory>Apparel</parentCategory>
+        <allowedByDefault>true</allowedByDefault>
+        <workerClass>RaddusX.MaterialFilter.Apparel.Apparel_Material_Filter_Worker</workerClass>
+        <modExtensions>
+            <li Class="RaddusX.MaterialFilter.Apparel.Material_Filter_Extension">
+                <defName>Plasteel</defName>
+            </li>
+        </modExtensions>
+    </SpecialThingFilterDef>
+
+    <!-- Synthread -->
+    <SpecialThingFilterDef>
+        <defName>RaddusX_Material_Filter_Apparel_Allow_Synthread</defName>
+        <label>allow synthread</label>
+        <description>Allow synthread</description>
+        <parentCategory>Apparel</parentCategory>
+        <allowedByDefault>true</allowedByDefault>
+        <workerClass>RaddusX.MaterialFilter.Apparel.Apparel_Material_Filter_Worker</workerClass>
+        <modExtensions>
+            <li Class="RaddusX.MaterialFilter.Apparel.Material_Filter_Extension">
+                <defName>Synthread</defName>
+            </li>
+        </modExtensions>
+    </SpecialThingFilterDef>
+
+    <!-- Hyperweave -->
+    <SpecialThingFilterDef>
+        <defName>RaddusX_Material_Filter_Apparel_Allow_Hyperweave</defName>
+        <label>allow hyperweave</label>
+        <description>Allow hyperweave</description>
+        <parentCategory>Apparel</parentCategory>
+        <allowedByDefault>true</allowedByDefault>
+        <workerClass>RaddusX.MaterialFilter.Apparel.Apparel_Material_Filter_Worker</workerClass>
+        <modExtensions>
+            <li Class="RaddusX.MaterialFilter.Apparel.Material_Filter_Extension">
+                <defName>Hyperweave</defName>
+            </li>
+        </modExtensions>
+    </SpecialThingFilterDef>
+
+    <!-- Devilstrand -->
+    <SpecialThingFilterDef>
+        <defName>RaddusX_Material_Filter_Apparel_Allow_Devilstrand</defName>
+        <label>allow devilstrand</label>
+        <description>Allow devilstrand</description>
+        <parentCategory>Apparel</parentCategory>
+        <allowedByDefault>true</allowedByDefault>
+        <workerClass>RaddusX.MaterialFilter.Apparel.Apparel_Material_Filter_Worker</workerClass>
+        <modExtensions>
+            <li Class="RaddusX.MaterialFilter.Apparel.Material_Filter_Extension">
+                <defName>DevilstrandCloth</defName>
+            </li>
+        </modExtensions>
+    </SpecialThingFilterDef>
+
+</Defs>

@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <TargetFramework>net480</TargetFramework>
+        <PlatformTarget>x64</PlatformTarget>
+        <LangVersion>8.0</LangVersion> <!-- for default null values in methods and elsewhere. Previously unspecififed, 7.3? -->
+        <!--<Nullable>enable</Nullable>--> <!-- previously missing -->
+
+        <!-- Modify [RootNamespace], [AssemblyName], [OutputPath], [VersionPrefix] -->
+        <RootNamespace>RaddusX</RootNamespace>
+        <AssemblyName>MaterialFilter</AssemblyName>
+        <OutputPath>../1.6/Assemblies</OutputPath>
+        <VersionPrefix>1.0.0</VersionPrefix> <!-- don't forget to change version in About.xml -->
+
+        <!-- Do not generate pdb file -->
+        <DebugType>none</DebugType>
+
+        <DebugSymbols>false</DebugSymbols>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+
+        <RimWorldPath Condition="'$(RimWorldPath)' == '' AND '$(OS)' == 'Windows_NT'">../../../RimWorldWin64_Data/Managed</RimWorldPath>
+        <RimWorldPath Condition="'$(RimWorldPath)' == '' AND '$(OS)' != 'Windows_NT'">../../../RimWorldLinux_Data/Managed</RimWorldPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+
+        <!-- Mod -->
+        <Compile Include="../Source/*" />
+        <Compile Include="../Source/Apparel/*" />
+        <Compile Include="../Source/Utility/*" />
+
+        <!-- Rimworld -->
+        <Reference Include="$(RimWorldPath)/*.dll">
+            <Private>False</Private>
+        </Reference>
+
+    </ItemGroup>
+</Project>
