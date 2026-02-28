@@ -27,6 +27,7 @@
         <!-- Mod -->
         <Compile Include="../Source/*" />
         <Compile Include="../Source/Apparel/*" />
+        <Compile Include="../Source/ModSettings/*" />
         <Compile Include="../Source/Utility/*" />
 
         <!-- Rimworld -->

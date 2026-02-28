@@ -1,10 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-
-using UnityEngine;
-using Verse;
-using Verse.Sound;
-using RimWorld;
+﻿using Verse;
 
 namespace RaddusX.MaterialFilter.ModSettings
 {

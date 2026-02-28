@@ -1,10 +1,5 @@
-﻿using System;
-using System.Threading.Tasks;
-
-using UnityEngine;
+﻿using UnityEngine;
 using Verse;
-using Verse.Sound;
-using RimWorld;
 
 using RaddusX.MaterialFilter.Utility;
 
@@ -57,7 +52,7 @@ namespace RaddusX.MaterialFilter.ModSettings
             listingStandard.Begin(inRect);
 
             /*
-                Skyboard Settings
+                Settings
             */
 
             Text.Font = GameFont.Medium;

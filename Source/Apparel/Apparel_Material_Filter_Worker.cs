@@ -1,6 +1,4 @@
-
 using Verse;
-using System.Reflection;
 using System.Linq;
 
 using RaddusX.MaterialFilter.Utility;
@@ -51,7 +49,7 @@ namespace RaddusX.MaterialFilter.Apparel
         /**
          * Whether the filter should be displayed for a category.
          *
-         * In our case they should only if they are apparel.
+         * In this case they should only be displayed for the Apparel category.
          *
          * @public
          *
@@ -86,11 +84,13 @@ namespace RaddusX.MaterialFilter.Apparel
         {
             Logging_Utility.LogMessage("AlwaysMatches() called.");
 
-            return true;
+            return false;
         }
         
-       /**
+        /**
          * Whether the filter applies to this item.
+         *
+         * NOTE: With the way the filters are setup this method will ONLY be called by filters which are DISABLED.
          *
          * @public
          *
@@ -107,19 +107,18 @@ namespace RaddusX.MaterialFilter.Apparel
             */
             if (!t.def.IsApparel)
             {
-                Logging_Utility.LogMessage("---- Item is not apparel. Skipping.");
+                Logging_Utility.LogMessage("-- Item is not apparel. Skipping.");
                 return false;
             }
 
             /*
                 Cached?
             */
-            bool matched = false;
-            if (Apparel_Material_Filter_Cache.Has(_filterDef, t, out matched))
+            if (Apparel_Material_Filter_Cache.Has(_filterDef, t))
             {
-                Logging_Utility.LogMessage($"---- Found {t.def.defName} in cache. Returning {matched}...");
+                Logging_Utility.LogMessage($"-- Found {t.def.defName} in cache. Returning true...");
 
-                return matched;
+                return true;
             }
 
             /*
@@ -129,13 +128,13 @@ namespace RaddusX.MaterialFilter.Apparel
 
             if (filterExtension == null)
             {
-                Logging_Utility.LogMessage("---- Item's filter extension is null. Skipping.");
+                Logging_Utility.LogMessage("-- Item's filter extension is null. Skipping.");
                 return false;
             }
 
             if (filterExtension.resolvedDef == null)
             {
-                Logging_Utility.LogMessage("---- Item's filter extension resolvedDef is null. Skipping.");
+                Logging_Utility.LogMessage("-- Item's filter extension resolvedDef is null. Skipping.");
                 return false;
             }
 
@@ -144,11 +143,13 @@ namespace RaddusX.MaterialFilter.Apparel
             */
             if (t.Stuff != null)
             {
+                Logging_Utility.LogMessage("-- Stuff property exists.");
+
                 if (t.Stuff == filterExtension.resolvedDef)
                 {
                     Logging_Utility.LogMessage($"---- Does {t.Stuff.defName} match {filterExtension.defName}? YES.");
 
-                    Apparel_Material_Filter_Cache.Add(_filterDef, t, matched: true);
+                    Apparel_Material_Filter_Cache.Add(_filterDef, t);
 
                     return true;
                 }
@@ -162,12 +163,14 @@ namespace RaddusX.MaterialFilter.Apparel
             */
             if (t.def.costList == null)
             {
-                Logging_Utility.LogMessage("---- No costList found. Skipping.");
+                Logging_Utility.LogMessage("-- No costList found. Skipping.");
                 
-                Apparel_Material_Filter_Cache.Add(_filterDef, t, matched: false);
+                Apparel_Material_Filter_Cache.Add(_filterDef, t);
 
-                return false; // clothing doesn't use costList so we can skip checking it below.
+                return false;
             }
+
+            Logging_Utility.LogMessage("-- costList property exists.");
 
             foreach (ThingDefCountClass cost in t.def.costList)
             {
@@ -175,7 +178,7 @@ namespace RaddusX.MaterialFilter.Apparel
                 {
                     Logging_Utility.LogMessage($"---- Does {cost.thingDef.defName} match {filterExtension.defName}? YES.");
 
-                    Apparel_Material_Filter_Cache.Add(_filterDef, t, matched: true);
+                    Apparel_Material_Filter_Cache.Add(_filterDef, t);
 
                     return true;
                 }
@@ -183,9 +186,9 @@ namespace RaddusX.MaterialFilter.Apparel
                 Logging_Utility.LogMessage($"---- Does {cost.thingDef.defName} match {filterExtension.defName}? NO.");
             }
 
-            Apparel_Material_Filter_Cache.Add(_filterDef, t, matched: false);
+            Apparel_Material_Filter_Cache.Add(_filterDef, t);
 
-            Logging_Utility.LogMessage("---- costList was present but didn't match the filter. Skipping.");
+            Logging_Utility.LogMessage("-- None of the costList's matched the material. Skipping.");
 
             return false;
         }

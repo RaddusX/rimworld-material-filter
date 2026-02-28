@@ -1,6 +1,4 @@
-﻿
-using Verse;
-using System.Reflection;
+﻿using Verse;
 using RaddusX.MaterialFilter.Utility;
 
 namespace RaddusX.MaterialFilter

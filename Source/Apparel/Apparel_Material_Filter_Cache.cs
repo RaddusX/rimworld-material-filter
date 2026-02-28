@@ -8,89 +8,106 @@ namespace RaddusX.MaterialFilter.Apparel
     [StaticConstructorOnStartup]
     public static class Apparel_Material_Filter_Cache
     {
-        private readonly static HashSet<long> _matched = new HashSet<long>();
-        private readonly static HashSet<long> _unmatched = new HashSet<long>();
+        /**
+         * @var HashSet<long> The cache will store items which matched a material of a DISABLED filter.
+         * @private
+         * @static
+         * @readonly
+        */
+        private readonly static HashSet<long> _cache = new HashSet<long>();
 
+        /**
+         * Constructor.
+         *
+         * @public
+         *
+         * @return void
+        */
         static Apparel_Material_Filter_Cache()
         {
             Clear();
         }
 
-        public static void Add(SpecialThingFilterDef filterDef, Thing thing, bool matched)
+        /**
+         * Add the item to the cache.
+         *
+         * The cache will store items which matched a material of a DISABLED filter.
+         *
+         * @public
+         *
+         * @static
+         *
+         * @param SpecialThingFilterDef  filterDef  The filter
+         * @param Thing                  thing      The thing
+         *
+         * @return void
+        */
+        public static void Add(SpecialThingFilterDef filterDef, Thing thing)
         {
             ushort filterHash = filterDef.shortHash;
             ushort defHash = thing.def.shortHash;
             ushort stuffHash = thing.Stuff?.shortHash ?? 0;
             long key = ((long)filterHash << 32) | ((long)defHash << 16) | stuffHash;
 
-            if (matched)
+            if (_cache.Contains(key))
             {
-                if (_matched.Contains(key))
-                {
-                    Logging_Utility.LogMessage($"---- {thing.def.defName} already exists in the matched cache.");
+                Logging_Utility.LogMessage($"---- {thing.def.defName} already exists in the cache.");
 
-                    return;
-                }
-
-                Logging_Utility.LogMessage($"---- {thing.def.defName} does not exist in the matched cache. Adding it.");
-
-                _matched.Add(key);
-                _unmatched.Remove(key);
+                return;
             }
-            else
-            {
-                if (_unmatched.Contains(key))
-                {
-                    Logging_Utility.LogMessage($"---- {thing.def.defName} already exists in the unmatched cache.");
 
-                    return;
-                }
+            Logging_Utility.LogMessage($"---- {thing.def.defName} does not exist in the cache. Adding it.");
 
-                Logging_Utility.LogMessage($"---- {thing.def.defName} does not exist in the unmatched cache. Adding it.");
-
-                _unmatched.Add(key);
-                _matched.Remove(key);
-            }
+            _cache.Add(key);
         }
 
-        public static bool Has(SpecialThingFilterDef filterDef, Thing thing, out bool matched)
+        /**
+         * Check if an item exists in the cache.
+         *
+         * The cache stores items which matched a material of a DISABLED filter.
+         *
+         * @public
+         *
+         * @static
+         *
+         * @param SpecialThingFilterDef  filterDef  The filter
+         * @param Thing                  thing      The thing
+         *
+         * @return bool
+        */
+        public static bool Has(SpecialThingFilterDef filterDef, Thing thing)
         {
             ushort filterHash = filterDef.shortHash; 
             ushort defHash = thing.def.shortHash;
             ushort stuffHash = thing.Stuff?.shortHash ?? 0;
             long key = ((long)filterHash << 32) | ((long)defHash << 16) | stuffHash;
 
-            if (_matched.Contains(key))
+            if (_cache.Contains(key))
             {
-                Logging_Utility.LogMessage($"---- {thing.def.defName} exists in the matched cache.");
-
-                matched = true;
-
-                return true;
-            }
-
-            if (_unmatched.Contains(key))
-            {
-                Logging_Utility.LogMessage($"---- {thing.def.defName} exists in the unmatched cache.");
-
-                matched = false;
+                Logging_Utility.LogMessage($"---- {thing.def.defName} exists in the the cache.");
 
                 return true;
             }
     
-            Logging_Utility.LogMessage($"---- {thing.def.defName} does not exist in either cache");
-
-            matched = false;
+            Logging_Utility.LogMessage($"---- {thing.def.defName} does not exist in the cache.");
 
             return false;
     
         }
 
+        /**
+         * Clear the cache.
+         *
+         * @public
+         *
+         * @static
+         *
+         * @return void
+        */
         public static void Clear()
         {
             Logging_Utility.LogMessage("Clearing cache...");
-            _matched.Clear();
-            _unmatched.Clear();
+            _cache.Clear();
         }
     }
 }
