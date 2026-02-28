@@ -125,7 +125,7 @@ namespace RaddusX.MaterialFilter.Apparel
             /*
                 Check filter mod extension - extra precaution
             */
-            var filterExtension = _filterDef?.GetModExtension<MaterialFilterExtension>();
+            var filterExtension = _filterDef?.GetModExtension<Material_Filter_Extension>();
 
             if (filterExtension == null)
             {
