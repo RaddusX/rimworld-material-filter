@@ -49,7 +49,8 @@ namespace RaddusX.MaterialFilter.Apparel
 
                 return d.stuffProps.categories.Contains(StuffCategoryDefOf.Fabric) || 
                        d.stuffProps.categories.Contains(StuffCategoryDefOf.Leathery) || 
-                       d.stuffProps.categories.Contains(StuffCategoryDefOf.Metallic);
+                       d.stuffProps.categories.Contains(StuffCategoryDefOf.Metallic) ||
+                       d.stuffProps.categories.Contains(StuffCategoryDefOf.Woody);
 
             }).OrderBy(d => d.label);
 

@@ -9,7 +9,7 @@ namespace RaddusX.MaterialFilter.Apparel
     public class Material_Filter_Extension : DefModExtension
     {
         /**
-         * This filter extension's ThingDef. It's generated from the defName above, in the file 'Apparel_Material_Filter_Def_Generator.cs'.
+         * This material's ThingDef.
          *
          * @public
          *
@@ -122,7 +122,7 @@ namespace RaddusX.MaterialFilter.Apparel
 
             if (filterExtension.resolvedDef == null)
             {
-                Logging_Utility.LogMessage("-- Item's filter extension _resolvedDef is null. Skipping.");
+                Logging_Utility.LogMessage("-- Item's filter extension resolvedDef is null. Skipping.");
                 return false;
             }
 

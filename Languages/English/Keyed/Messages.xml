@@ -5,15 +5,15 @@
 
     <RaddusX.MaterialFilter.Settings.GenerateFilterDefs.Label>Generate Filter Definitions</RaddusX.MaterialFilter.Settings.GenerateFilterDefs.Label>
     <RaddusX.MaterialFilter.Settings.GenerateFilterDefs.ButtonLabel>Generate</RaddusX.MaterialFilter.Settings.GenerateFilterDefs.ButtonLabel>
-    <RaddusX.MaterialFilter.Settings.GenerateFilterDefs.Description>This generates the filters that the mod uses e.g. 'allow plasteel', 'allow gold', etc. The mod automatically generates these on game start, new game, and save load, but you can also use this to regenerate them at any time. If you've added new materials, or certain material's aren't showing up in the filter list, then regenerating them may fix the issue.</RaddusX.MaterialFilter.Settings.GenerateFilterDefs.Description>
+    <RaddusX.MaterialFilter.Settings.GenerateFilterDefs.Description>This generates the filters that the mod uses e.g. 'allow plasteel', 'allow gold', etc. The mod automatically generates these on game start, new game, and save load, but you can also use this to regenerate them at any time.</RaddusX.MaterialFilter.Settings.GenerateFilterDefs.Description>
     <RaddusX.MaterialFilter.Settings.GenerateFilterDefs.SuccessMessage>Filters regenerated successfully.</RaddusX.MaterialFilter.Settings.GenerateFilterDefs.SuccessMessage>
 
     <RaddusX.MaterialFilter.Settings.ClearCache.Label>Clear Cache</RaddusX.MaterialFilter.Settings.ClearCache.Label>
     <RaddusX.MaterialFilter.Settings.ClearCache.ButtonLabel>Clear</RaddusX.MaterialFilter.Settings.ClearCache.ButtonLabel>
-    <RaddusX.MaterialFilter.Settings.ClearCache.Description>The cache contains a list of apparel and the material they're made of. The mod automatically clears the cache on game start &amp;, new game, and save load, but you can also reset it here at anytime. If an item isn't being moved to a stockpile, or isn't being used in a bill, then resetting the cache might fix the issue.</RaddusX.MaterialFilter.Settings.ClearCache.Description>
+    <RaddusX.MaterialFilter.Settings.ClearCache.Description>The cache contains a list of apparel and the material they're made of. The mod automatically clears the cache on game start, new game, and save load, but you can also reset it here at anytime. For example: If an item isn't being moved to a stockpile, or isn't being used in a bill, and they have been setup correctly, then resetting the cache might fix the issue.</RaddusX.MaterialFilter.Settings.ClearCache.Description>
     <RaddusX.MaterialFilter.Settings.ClearCache.SuccessMessage>Cache cleared successfully.</RaddusX.MaterialFilter.Settings.ClearCache.SuccessMessage>
 
-    <RaddusX.MaterialFilter.AdvancedSettings.Label>AdvancedSettings</RaddusX.MaterialFilter.AdvancedSettings.Label>
+    <RaddusX.MaterialFilter.AdvancedSettings.Label>Advanced Settings</RaddusX.MaterialFilter.AdvancedSettings.Label>
 
     <RaddusX.MaterialFilter.Settings.LoggingEnabled.Label>Logging Enabled?</RaddusX.MaterialFilter.Settings.LoggingEnabled.Label>
     <RaddusX.MaterialFilter.Settings.LoggingEnabled.Description>Whether to enable logging (for debugging purposes). Default: OFF. I strongly recommend keeping this disabled unless you've encountered a problem w/ the mod (because the mod doesn't log any information if this is disabled).</RaddusX.MaterialFilter.Settings.LoggingEnabled.Description>
