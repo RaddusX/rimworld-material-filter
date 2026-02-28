@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using Verse;
+using RimWorld;
 
 using RaddusX.MaterialFilter.Utility;
+using RaddusX.MaterialFilter.Apparel;
 
 namespace RaddusX.MaterialFilter.ModSettings
 {
@@ -61,8 +63,43 @@ namespace RaddusX.MaterialFilter.ModSettings
 
             listingStandard.Gap(5f);
 
+            // Generate Filter Definitions
+
+            if (listingStandard.ButtonTextLabeled("RaddusX.MaterialFilter.Settings.GenerateFilterDefs.Label".Translate(), "RaddusX.MaterialFilter.Settings.GenerateFilterDefs.ButtonLabel".Translate()))
+            {
+                Apparel_Material_Filter_Def_Generator.Generate();
+
+                Messages.Message("RaddusX.MaterialFilter.Settings.GenerateFilterDefs.SuccessMessage".Translate(), MessageTypeDefOf.PositiveEvent, false);
+            }
+
+            listingStandard.SubLabel("RaddusX.MaterialFilter.Settings.GenerateFilterDefs.Description".Translate(), 1f);
+
+            listingStandard.Gap(5f);
+
+            // Clear Cache
+
+            if (listingStandard.ButtonTextLabeled("RaddusX.MaterialFilter.Settings.ClearCache.Label".Translate(), "RaddusX.MaterialFilter.Settings.ClearCache.ButtonLabel".Translate()))
+            {
+                Apparel_Material_Filter_Cache.Clear();
+
+                Messages.Message("RaddusX.MaterialFilter.Settings.ClearCache.SuccessMessage".Translate(), MessageTypeDefOf.PositiveEvent, false);
+            }
+
+            listingStandard.SubLabel("RaddusX.MaterialFilter.Settings.ClearCache.Description".Translate(), 1f);
+
+            /*
+                Advanced Settings
+            */
+
+            Text.Font = GameFont.Medium;
+            listingStandard.Label("RaddusX.MaterialFilter.AdvancedSettings.Label".Translate());
+            Text.Font = GameFont.Small;
+
+            listingStandard.Gap(5f);
+
             // "Logging Enabled?"
-            listingStandard.CheckboxLabeled("RaddusX.MaterialFilter.Settings.LoggingEnabled.Label".Translate(), ref settings.loggingEnabled, "RaddusX.MaterialFilter.Settings.LoggingEnabled.Tooltip".Translate());
+            listingStandard.CheckboxLabeled("RaddusX.MaterialFilter.Settings.LoggingEnabled.Label".Translate(), ref settings.loggingEnabled);
+            listingStandard.SubLabel("RaddusX.MaterialFilter.Settings.LoggingEnabled.Description".Translate(), 1f);
 
             listingStandard.End();
 

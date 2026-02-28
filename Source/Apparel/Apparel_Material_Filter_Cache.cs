@@ -29,40 +29,35 @@ namespace RaddusX.MaterialFilter.Apparel
         }
 
         /**
-         * Add the item to the cache.
-         *
-         * The cache will store items which matched a material of a DISABLED filter.
+         * Add the item of the specified material to the cache.
          *
          * @public
          *
          * @static
          *
-         * @param SpecialThingFilterDef  filterDef  The filter
-         * @param Thing                  thing      The thing
+         * @param Thing    thing    The thing
+         * @param ThingDef material The material
          *
          * @return void
         */
-        public static void Add(SpecialThingFilterDef filterDef, Thing thing)
+        public static void Add(Thing thing, ThingDef material)
         {
-            ushort filterHash = filterDef.shortHash;
-            ushort defHash = thing.def.shortHash;
-            ushort stuffHash = thing.Stuff?.shortHash ?? 0;
-            long key = ((long)filterHash << 32) | ((long)defHash << 16) | stuffHash;
+            long key = ((long)thing.thingIDNumber << 32) | (long)material.shortHash;
 
             if (_cache.Contains(key))
             {
-                Logging_Utility.LogMessage($"---- {thing.def.defName} already exists in the cache.");
+                Logging_Utility.LogMessage($"---- {thing.def.defName}-{material.defName} already exists in the cache.");
 
                 return;
             }
 
-            Logging_Utility.LogMessage($"---- {thing.def.defName} does not exist in the cache. Adding it.");
+            Logging_Utility.LogMessage($"---- {thing.def.defName}-{material.defName} does not exist in the cache. Adding it.");
 
             _cache.Add(key);
         }
 
         /**
-         * Check if an item exists in the cache.
+         * Check if an item of the specified material exists in the cache.
          *
          * The cache stores items which matched a material of a DISABLED filter.
          *
@@ -70,26 +65,23 @@ namespace RaddusX.MaterialFilter.Apparel
          *
          * @static
          *
-         * @param SpecialThingFilterDef  filterDef  The filter
-         * @param Thing                  thing      The thing
+         * @param Thing    thing    The thing
+         * @param ThingDef material The material
          *
          * @return bool
         */
-        public static bool Has(SpecialThingFilterDef filterDef, Thing thing)
+        public static bool Has(Thing thing, ThingDef material)
         {
-            ushort filterHash = filterDef.shortHash; 
-            ushort defHash = thing.def.shortHash;
-            ushort stuffHash = thing.Stuff?.shortHash ?? 0;
-            long key = ((long)filterHash << 32) | ((long)defHash << 16) | stuffHash;
+            long key = ((long)thing.thingIDNumber << 32) | (long)material.shortHash;
 
             if (_cache.Contains(key))
             {
-                Logging_Utility.LogMessage($"---- {thing.def.defName} exists in the the cache.");
+                Logging_Utility.LogMessage($"---- {thing.def.defName}-{material.defName} exists in the the cache.");
 
                 return true;
             }
     
-            Logging_Utility.LogMessage($"---- {thing.def.defName} does not exist in the cache.");
+            Logging_Utility.LogMessage($"---- {thing.def.defName}-{material.defName} does not exist in the cache.");
 
             return false;
     

@@ -8,22 +8,20 @@ namespace RaddusX.MaterialFilter.Apparel
     [StaticConstructorOnStartup]
     public class Material_Filter_Extension : DefModExtension
     {
-        public string defName;
+        /**
+         * This filter extension's ThingDef. It's generated from the defName above, in the file 'Apparel_Material_Filter_Def_Generator.cs'.
+         *
+         * @public
+         *
+         * @var ThingDef
+        */
+        public ThingDef resolvedDef;
 
-        public ThingDef resolvedDef // We will generate this from the string defName above
-        {
-            get
-            {
-                if (_resolvedDef == null)
-                {
-                    _resolvedDef = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
-                }
-                return _resolvedDef;
-            }
-        }
-
-        private ThingDef _resolvedDef;
-
+        /**
+         * Constructor.
+         *
+         * @static
+        */
         static Material_Filter_Extension()
         {
             Logging_Utility.LogMessage("Material_Filter_Extension ctr called.");
@@ -32,8 +30,6 @@ namespace RaddusX.MaterialFilter.Apparel
 
     public class Apparel_Material_Filter_Worker : SpecialThingFilterWorker
     {
-        private SpecialThingFilterDef __filterDef;
-
         private SpecialThingFilterDef _filterDef
         {
             get
@@ -45,6 +41,8 @@ namespace RaddusX.MaterialFilter.Apparel
                 return __filterDef;
             }
         }
+
+        private SpecialThingFilterDef __filterDef;
 
         /**
          * Whether the filter should be displayed for a category.
@@ -100,29 +98,19 @@ namespace RaddusX.MaterialFilter.Apparel
         */
         public override bool Matches(Thing t)
         {
-            Logging_Utility.LogMessage($"Filter '{_filterDef.label}': Checking {t.def.defName}...");
+            Logging_Utility.LogMessage($"\nFilter '{_filterDef.label}': Checking {t.def.defName}...");
 
             /*
                 Not apparel
             */
-            if (!t.def.IsApparel)
-            {
-                Logging_Utility.LogMessage("-- Item is not apparel. Skipping.");
-                return false;
-            }
+            //if (!t.def.IsApparel)
+            //{
+            //    Logging_Utility.LogMessage("-- Item is not apparel. Skipping.");
+            //    return false;
+            //}
 
             /*
-                Cached?
-            */
-            if (Apparel_Material_Filter_Cache.Has(_filterDef, t))
-            {
-                Logging_Utility.LogMessage($"-- Found {t.def.defName} in cache. Returning true...");
-
-                return true;
-            }
-
-            /*
-                Check filter mod extension - extra precaution
+                Check filter mod extension
             */
             var filterExtension = _filterDef?.GetModExtension<Material_Filter_Extension>();
 
@@ -134,8 +122,18 @@ namespace RaddusX.MaterialFilter.Apparel
 
             if (filterExtension.resolvedDef == null)
             {
-                Logging_Utility.LogMessage("-- Item's filter extension resolvedDef is null. Skipping.");
+                Logging_Utility.LogMessage("-- Item's filter extension _resolvedDef is null. Skipping.");
                 return false;
+            }
+
+            /*
+                Cached?
+            */
+            if (Apparel_Material_Filter_Cache.Has(t, filterExtension.resolvedDef))
+            {
+                Logging_Utility.LogMessage($"-- Found {t.def.defName}-{filterExtension.resolvedDef.defName} in cache. Returning true...");
+
+                return true;
             }
 
             /*
@@ -147,14 +145,14 @@ namespace RaddusX.MaterialFilter.Apparel
 
                 if (t.Stuff == filterExtension.resolvedDef)
                 {
-                    Logging_Utility.LogMessage($"---- Does {t.Stuff.defName} match {filterExtension.defName}? YES.");
+                    Logging_Utility.LogMessage($"---- Does {t.Stuff.defName} match {filterExtension.resolvedDef.defName}? YES.");
 
-                    Apparel_Material_Filter_Cache.Add(_filterDef, t);
+                    Apparel_Material_Filter_Cache.Add(t, filterExtension.resolvedDef);
 
                     return true;
                 }
 
-                Logging_Utility.LogMessage($"---- Does {t.Stuff.defName} match {filterExtension.defName}? No.");
+                Logging_Utility.LogMessage($"---- Does {t.Stuff.defName} match {filterExtension.resolvedDef.defName}? No.");
                 
             }
 
@@ -164,8 +162,6 @@ namespace RaddusX.MaterialFilter.Apparel
             if (t.def.costList == null)
             {
                 Logging_Utility.LogMessage("-- No costList found. Skipping.");
-                
-                Apparel_Material_Filter_Cache.Add(_filterDef, t);
 
                 return false;
             }
@@ -176,17 +172,15 @@ namespace RaddusX.MaterialFilter.Apparel
             {
                 if (cost.thingDef == filterExtension.resolvedDef)
                 {
-                    Logging_Utility.LogMessage($"---- Does {cost.thingDef.defName} match {filterExtension.defName}? YES.");
+                    Logging_Utility.LogMessage($"---- Does {cost.thingDef.defName} match {filterExtension.resolvedDef.defName}? YES.");
 
-                    Apparel_Material_Filter_Cache.Add(_filterDef, t);
+                    Apparel_Material_Filter_Cache.Add(t, filterExtension.resolvedDef);
 
                     return true;
                 }
 
-                Logging_Utility.LogMessage($"---- Does {cost.thingDef.defName} match {filterExtension.defName}? NO.");
+                Logging_Utility.LogMessage($"---- Does {cost.thingDef.defName} match {filterExtension.resolvedDef.defName}? NO.");
             }
-
-            Apparel_Material_Filter_Cache.Add(_filterDef, t);
 
             Logging_Utility.LogMessage("-- None of the costList's matched the material. Skipping.");
 
