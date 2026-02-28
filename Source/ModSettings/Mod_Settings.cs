@@ -4,6 +4,7 @@ using RimWorld;
 
 using RaddusX.MaterialFilter.Utility;
 using RaddusX.MaterialFilter.Apparel;
+using RaddusX.MaterialFilter.Cache;
 
 namespace RaddusX.MaterialFilter.ModSettings
 {
@@ -80,7 +81,7 @@ namespace RaddusX.MaterialFilter.ModSettings
 
             if (listingStandard.ButtonTextLabeled("RaddusX.MaterialFilter.Settings.ClearCache.Label".Translate(), "RaddusX.MaterialFilter.Settings.ClearCache.ButtonLabel".Translate()))
             {
-                Apparel_Material_Filter_Cache.Clear();
+                Thing_Material_Cache.Clear();
 
                 Messages.Message("RaddusX.MaterialFilter.Settings.ClearCache.SuccessMessage".Translate(), MessageTypeDefOf.PositiveEvent, false);
             }

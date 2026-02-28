@@ -2,6 +2,7 @@ using Verse;
 using System.Linq;
 
 using RaddusX.MaterialFilter.Utility;
+using RaddusX.MaterialFilter.Cache;
 
 namespace RaddusX.MaterialFilter.Apparel
 {
@@ -129,7 +130,7 @@ namespace RaddusX.MaterialFilter.Apparel
             /*
                 Cached?
             */
-            if (Apparel_Material_Filter_Cache.Has(t, filterExtension.resolvedDef))
+            if (Thing_Material_Cache.Has(t, filterExtension.resolvedDef))
             {
                 Logging_Utility.LogMessage($"-- Found {t.def.defName}-{filterExtension.resolvedDef.defName} in cache. Returning true...");
 
@@ -147,7 +148,7 @@ namespace RaddusX.MaterialFilter.Apparel
                 {
                     Logging_Utility.LogMessage($"---- Does {t.Stuff.defName} match {filterExtension.resolvedDef.defName}? YES.");
 
-                    Apparel_Material_Filter_Cache.Add(t, filterExtension.resolvedDef);
+                    Thing_Material_Cache.Add(t, filterExtension.resolvedDef);
 
                     return true;
                 }
@@ -174,7 +175,7 @@ namespace RaddusX.MaterialFilter.Apparel
                 {
                     Logging_Utility.LogMessage($"---- Does {cost.thingDef.defName} match {filterExtension.resolvedDef.defName}? YES.");
 
-                    Apparel_Material_Filter_Cache.Add(t, filterExtension.resolvedDef);
+                    Thing_Material_Cache.Add(t, filterExtension.resolvedDef);
 
                     return true;
                 }

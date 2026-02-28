@@ -10,7 +10,7 @@
 
     <RaddusX.MaterialFilter.Settings.ClearCache.Label>Clear Cache</RaddusX.MaterialFilter.Settings.ClearCache.Label>
     <RaddusX.MaterialFilter.Settings.ClearCache.ButtonLabel>Clear</RaddusX.MaterialFilter.Settings.ClearCache.ButtonLabel>
-    <RaddusX.MaterialFilter.Settings.ClearCache.Description>The cache contains a list of apparel and the material they're made of. The mod automatically clears the cache on game start, new game, and save load, but you can also reset it here at anytime. For example: If an item isn't being moved to a stockpile, or isn't being used in a bill, and they have been setup correctly, then resetting the cache might fix the issue.</RaddusX.MaterialFilter.Settings.ClearCache.Description>
+    <RaddusX.MaterialFilter.Settings.ClearCache.Description>The cache contains a list of apparel and the material it's made of (though note it doesn't add every single item in the game to the cache, only those on the current map that match a disabled filter). The mod automatically clears the cache on game start, new game, and save load, but you can also reset it here at anytime. For example: If an item isn't being moved to a stockpile, or isn't being used in a bill, and they have been setup correctly, then resetting the cache might fix the issue.</RaddusX.MaterialFilter.Settings.ClearCache.Description>
     <RaddusX.MaterialFilter.Settings.ClearCache.SuccessMessage>Cache cleared successfully.</RaddusX.MaterialFilter.Settings.ClearCache.SuccessMessage>
 
     <RaddusX.MaterialFilter.AdvancedSettings.Label>Advanced Settings</RaddusX.MaterialFilter.AdvancedSettings.Label>

@@ -1,12 +1,14 @@
 using RimWorld.Planet;
 
 using RaddusX.MaterialFilter.Utility;
+using RaddusX.MaterialFilter.Apparel;
+using RaddusX.MaterialFilter.Cache;
 
-namespace RaddusX.MaterialFilter.Apparel
+namespace RaddusX.MaterialFilter.Cache
 {
-    public class Apparel_Material_Filter_Cache_Component : WorldComponent
+    public class Thing_Material_Filter_Cache_Component : WorldComponent
     {
-        public Apparel_Material_Filter_Cache_Component(World world) : base(world) { }
+        public Thing_Material_Filter_Cache_Component(World world) : base(world) { }
 
         /**
          * Called on new game / save load.
@@ -21,7 +23,7 @@ namespace RaddusX.MaterialFilter.Apparel
         */
         public override void FinalizeInit(bool fromLoad)
         {
-            Logging_Utility.LogMessage("Allow_Apparel_Material_Cache_Component.FinalizeInit() called.");
+            Logging_Utility.LogMessage("Thing_Material_Filter_Cache_Component.FinalizeInit() called.");
             
             /*
                 Regenerate Apparel Material Filter Definitions
@@ -32,7 +34,7 @@ namespace RaddusX.MaterialFilter.Apparel
             /*
                 Clear cache
             */
-            Apparel_Material_Filter_Cache.Clear();
+            Thing_Material_Cache.Clear();
         }
     }
 }

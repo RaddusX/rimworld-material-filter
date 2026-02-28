@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 using RaddusX.MaterialFilter.Utility;
 
-namespace RaddusX.MaterialFilter.Apparel
+namespace RaddusX.MaterialFilter.Cache
 {
     [StaticConstructorOnStartup]
-    public static class Apparel_Material_Filter_Cache
+    public static class Thing_Material_Cache
     {
         /**
          * @var HashSet<long> The cache will store items which matched a material of a DISABLED filter.
@@ -23,7 +23,7 @@ namespace RaddusX.MaterialFilter.Apparel
          *
          * @return void
         */
-        static Apparel_Material_Filter_Cache()
+        static Thing_Material_Cache()
         {
             Clear();
         }
@@ -58,8 +58,6 @@ namespace RaddusX.MaterialFilter.Apparel
 
         /**
          * Check if an item of the specified material exists in the cache.
-         *
-         * The cache stores items which matched a material of a DISABLED filter.
          *
          * @public
          *
