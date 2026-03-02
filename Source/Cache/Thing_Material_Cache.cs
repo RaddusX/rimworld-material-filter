@@ -21,6 +21,8 @@ namespace RaddusX.MaterialFilter.Cache
          *
          * @public
          *
+         * @static
+         *
          * @return void
         */
         static Thing_Material_Cache()

@@ -71,7 +71,7 @@ namespace RaddusX.MaterialFilter.Apparel
         /**
          * Whether all things should always match the filter.
          *
-         * They should never always match. They should check each item (in Matches()) to make sure its made of the specified material.
+         * They should never always match. They should check each item (in Matches()) to make sure it's made of the specified material.
          *
          * @public
          *
@@ -100,15 +100,6 @@ namespace RaddusX.MaterialFilter.Apparel
         public override bool Matches(Thing t)
         {
             Logging_Utility.LogMessage($"\nFilter '{_filterDef.label}': Checking {t.def.defName}...");
-
-            /*
-                Not apparel
-            */
-            //if (!t.def.IsApparel)
-            //{
-            //    Logging_Utility.LogMessage("-- Item is not apparel. Skipping.");
-            //    return false;
-            //}
 
             /*
                 Check filter mod extension
