@@ -1,12 +1,18 @@
 <ModMetaData>
-	<name>RaddusX's Material Filter</name>
+	<name>Apparel Material Filter</name>
 	<author>RaddusX</author>
 	<supportedVersions>
 		<li>1.6</li>
 	</supportedVersions>
 	<modVersion>1.0.0</modVersion>
 	<packageId>raddusx.material.filter</packageId>
-	<description></description>
+	<description>For full details see:
+	
+	- Steam Workshop page: https://steamcommunity.com/sharedfiles/filedetails/?id=3677250657 
+	
+	- GitHub page: https://github.com/RaddusX/rimworld-material-filter
+	
+	</description>
 	<modDependencies>
 	</modDependencies>
 	<loadAfter>

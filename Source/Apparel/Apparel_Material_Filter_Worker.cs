@@ -52,7 +52,7 @@ namespace RaddusX.MaterialFilter.Apparel
          *
          * @public
          *
-         * ThingDef def The thing's def
+         * @param ThingDef def The thing's def
          *
          * @return bool
         */
@@ -75,7 +75,7 @@ namespace RaddusX.MaterialFilter.Apparel
          *
          * @public
          *
-         * ThingDef def The thing's def
+         * @param ThingDef def The thing's def
          *
          * @return bool
         */
